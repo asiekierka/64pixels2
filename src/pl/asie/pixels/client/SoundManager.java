@@ -267,7 +267,7 @@ public class SoundManager implements Runnable
 			try
 			{
 				ByteArrayOutputStream bfp = new ByteArrayOutputStream();
-				InputStream fp = SoundManager.class.getResourceAsStream(fname);
+				InputStream fp = SoundManager.class.getResourceAsStream("/res/sound/" + fname);
 
 				// SKIP HEADER, ASSUME 44kHz 16-bit little-endian signed mono!!! -GM
 				byte[] hdr = new byte[44];
@@ -488,33 +488,33 @@ public class SoundManager implements Runnable
 			allocateTone(new CSMelodium(x, y, noteTab[note], vol));
 		else switch(note-240) // done this way for compiled code size reasons -GM
 		{
-		case 0: // kick
-			allocateTone(new CSKickDrum(x, y, vol));
-			break;
-		case 1: // snare
-			allocateTone(new CSNoise(x, y, 3520, 0.5, vol));
-			break;
-		case 2: // closed hihat
-			allocateTone(new CSNoise(x, y, 7040, 0.05, vol));
-			break;
-		case 3: // open hihat
-			allocateTone(new CSNoise(x, y, 7040, 0.25, vol));
-			break;
-		case 4: // hi tom
-			allocateTone(new CSTomDrum(x, y, 300, vol));
-			break;
-		case 5: // mid tom
-			allocateTone(new CSTomDrum(x, y, 200, vol));
-			break;
-		case 6: // low tom
-			allocateTone(new CSTomDrum(x, y, 120, vol));
-			break;
-		case 7: // crash
-			allocateTone(new CSNoise(x, y, 7040, 2.0, vol));
-			break;
-		default:
-			System.out.printf("TODO drum %d\n", note);
-			break;
+			case 0: // kick
+				allocateTone(new CSKickDrum(x, y, vol));
+				break;
+			case 1: // snare
+				allocateTone(new CSNoise(x, y, 3520, 0.5, vol));
+				break;
+			case 2: // closed hihat
+				allocateTone(new CSNoise(x, y, 7040, 0.05, vol));
+				break;
+			case 3: // open hihat
+				allocateTone(new CSNoise(x, y, 7040, 0.25, vol));
+				break;
+			case 4: // hi tom
+				allocateTone(new CSTomDrum(x, y, 300, vol));
+				break;
+			case 5: // mid tom
+				allocateTone(new CSTomDrum(x, y, 200, vol));
+				break;
+			case 6: // low tom
+				allocateTone(new CSTomDrum(x, y, 120, vol));
+				break;
+			case 7: // crash
+				allocateTone(new CSNoise(x, y, 7040, 2.0, vol));
+				break;
+			default:
+				System.out.printf("TODO drum %d\n", note);
+				break;
 		}
 	}
 
@@ -527,20 +527,20 @@ public class SoundManager implements Runnable
 	{
 		switch(smp)
 		{
-		case 0:
-			playSample(x,y,smpPlateOff,vol);
-			break;
-		case 1:
-			playSample(x,y,smpPlateOn,vol);
-			break;
-		case 2:
-			playSample(x,y,smpDoorClose,vol);
-			break;
-		case 3:
-			playSample(x,y,smpDoorOpen,vol);
-			break;
-		default:
-			System.out.printf("TODO sample %d\n", smp);
+			case 0:
+				playSample(x,y,smpPlateOff,vol);
+				break;
+			case 1:
+				playSample(x,y,smpPlateOn,vol);
+				break;
+			case 2:
+				playSample(x,y,smpDoorClose,vol);
+				break;
+			case 3:
+				playSample(x,y,smpDoorOpen,vol);
+				break;
+			default:
+				System.out.printf("TODO sample %d\n", smp);
 		}
 	}
 
