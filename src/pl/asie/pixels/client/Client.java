@@ -1,7 +1,5 @@
 package pl.asie.pixels.client;
 
-import java.io.File;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -14,15 +12,18 @@ public class Client extends JComponent {
 	private static final long serialVersionUID = 1781552095881814198L;
 
 	private JFrame window;
-	private SwingRendererBlockGrid grid;
-	private CharacterManager chars;
+
 	private PaletteManager palette;
+	private CharacterManager chars;
+	private SwingRendererBlockGrid grid;
+	private SoundManager sound;
 	
 	public Client() {
 		window = new JFrame("64pixels 0.0.0.1 all over again");
 		palette = new PaletteManager(16);
 		chars = new CharacterManager(palette, 256);
 		grid = new SwingRendererBlockGrid(32, 24, true, chars);
+		sound = new SoundManager();
 	}
 	
 	public void init()
@@ -36,6 +37,8 @@ public class Client extends JComponent {
 		window.pack(); // makes everything a nice size
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+		
+		new Thread(sound).start();
 	}
 	
 	public void run() {
